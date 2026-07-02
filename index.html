@@ -49,28 +49,75 @@
 
             <!-- Calculadora -->
             <div id="calculadora" class="tab hidden">
-                <h1>Calculadora de Custos</h1>
-                <p class="subtitle">Calcule e precifique suas impressões</p>
-                <!-- Vamos preencher na Etapa 2 -->
-                <div class="placeholder">Calculadora será implementada na próxima etapa</div>
+                <h1>🧮 Calculadora de Custos</h1>
+                <p class="subtitle">Calcule o custo real e defina o preço de venda</p>
+                
+                <div class="card">
+                    <form id="calcForm">
+                        <div class="input-group">
+                            <label for="nome">Nome da Impressão</label>
+                            <input type="text" id="nome" placeholder="Ex: Suporte de celular" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="filamento">Peso de filamento usado</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="filamento" value="250" step="0.1" required>
+                                <span class="unit">gramas</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="precoFilamento">Preço do filamento</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="precoFilamento" value="120" step="0.01" required>
+                                <span class="unit">R$/kg</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="horas">Tempo de impressão</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="horas" value="8" step="0.1" required>
+                                <span class="unit">horas</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="potencia">Potência da impressora</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="potencia" value="300" step="1" required>
+                                <span class="unit">Watts</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="precoEnergia">Preço da energia</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="precoEnergia" value="0.85" step="0.01" required>
+                                <span class="unit">R$/kWh</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-calcular">Calcular e Salvar</button>
+                    </form>
+                </div>
             </div>
 
-            <!-- Vendas -->
+            <!-- Outras abas (placeholders) -->
             <div id="vendas" class="tab hidden">
-                <h1>Histórico de Vendas</h1>
-                <div class="placeholder">Histórico de vendas será implementado em breve</div>
+                <h1>💰 Histórico de Vendas</h1>
+                <div class="placeholder">Em desenvolvimento...</div>
             </div>
 
-            <!-- Produtos -->
             <div id="produtos" class="tab hidden">
-                <h1>Meus Produtos</h1>
-                <div class="placeholder">Cadastro de produtos será implementado em breve</div>
+                <h1>📦 Meus Produtos</h1>
+                <div class="placeholder">Em desenvolvimento...</div>
             </div>
 
-            <!-- Relatórios -->
             <div id="relatorios" class="tab hidden">
-                <h1>Relatórios e Análises</h1>
-                <div class="placeholder">Relatórios automáticos serão implementados em breve</div>
+                <h1>📊 Relatórios</h1>
+                <div class="placeholder">Em desenvolvimento...</div>
             </div>
         </main>
     </div>
