@@ -14,7 +14,6 @@ document.querySelectorAll('.menu-item').forEach(item => {
         document.getElementById(tabId).classList.add('active');
     });
 });
-
 // ====================== CALCULADORA ======================
 const form = document.getElementById('calcForm');
 
