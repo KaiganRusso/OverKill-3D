@@ -48,63 +48,96 @@
                 </div>
             </div>
 
-            <!-- Calculadora -->
-            <div id="calculadora" class="tab hidden">
-                <h1>🧮 Calculadora de Custos</h1>
-                <p class="subtitle">Calcule o custo real da sua impressão</p>
-                
-                <div class="card">
-                    <form id="calcForm">
-                        <div class="input-group">
-                            <label for="nome">Nome da Impressão</label>
-                            <input type="text" id="nome" placeholder="Ex: Suporte de celular" required>
-                        </div>
+            <!-- Calculadora Expandida -->
+<div id="calculadora" class="tab hidden">
+    <h1>🧮 Calculadora de Custos</h1>
+    <p class="subtitle">Calcule o custo real e defina o preço de venda</p>
+    
+    <div class="card">
+        <form id="calcForm">
+            <div class="input-group">
+                <label for="nome">Nome da Impressão</label>
+                <input type="text" id="nome" placeholder="Ex: Suporte de celular" required>
+            </div>
 
-                        <div class="input-group">
-                            <label for="filamento">Peso de filamento usado</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="filamento" value="250" step="0.1" required>
-                                <span class="unit">gramas</span>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="precoFilamento">Preço do filamento</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="precoFilamento" value="120" step="0.01" required>
-                                <span class="unit">R$/kg</span>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="horas">Tempo de impressão</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="horas" value="8" step="0.1" required>
-                                <span class="unit">horas</span>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="potencia">Potência da impressora</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="potencia" value="300" step="1" required>
-                                <span class="unit">Watts</span>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="precoEnergia">Preço da energia</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="precoEnergia" value="0.85" step="0.01" required>
-                                <span class="unit">R$/kWh</span>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-calcular">Calcular e Salvar</button>
-                    </form>
+            <div class="input-group">
+                <label for="filamento">Peso de filamento usado</label>
+                <div class="input-with-unit">
+                    <input type="number" id="filamento" value="250" step="0.1" required>
+                    <span class="unit">gramas</span>
                 </div>
             </div>
 
+            <div class="input-group">
+                <label for="precoFilamento">Preço do filamento</label>
+                <div class="input-with-unit">
+                    <input type="number" id="precoFilamento" value="120" step="0.01" required>
+                    <span class="unit">R$/kg</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="horas">Tempo de impressão</label>
+                <div class="input-with-unit">
+                    <input type="number" id="horas" value="8" step="0.1" required>
+                    <span class="unit">horas</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="potencia">Potência da impressora</label>
+                <div class="input-with-unit">
+                    <input type="number" id="potencia" value="300" step="1" required>
+                    <span class="unit">Watts</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="precoEnergia">Preço da energia</label>
+                <div class="input-with-unit">
+                    <input type="number" id="precoEnergia" value="0.85" step="0.01" required>
+                    <span class="unit">R$/kWh</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-calcular">Calcular</button>
+        </form>
+    </div>
+
+    <!-- Área de Resultado -->
+    <div id="resultadoCalc" class="resultado-card hidden">
+        <h2 id="nomeResultadoCalc"></h2>
+        
+        <div class="resultados">
+            <div class="result-item">
+                <span>Custo Total</span>
+                <strong id="custoTotal">R$ 0,00</strong>
+            </div>
+            <div class="result-item">
+                <span>Custo por Hora</span>
+                <strong id="custoHora">R$ 0,00</strong>
+            </div>
+        </div>
+
+        <h3>Sugestão de Preço de Venda</h3>
+        <div class="multiplicadores">
+            <div class="multi-item">
+                <span class="multi-titulo">2× <small>Lucro Mínimo</small></span>
+                <span id="preco2" class="multi-valor">R$ 0,00</span>
+            </div>
+            <div class="multi-item destaque">
+                <span class="multi-titulo">3× <small>Lucro Ideal</small></span>
+                <span id="preco3" class="multi-valor">R$ 0,00</span>
+            </div>
+            <div class="multi-item">
+                <span class="multi-titulo">4× <small>Lucro Alto</small></span>
+                <span id="preco4" class="multi-valor">R$ 0,00</span>
+            </div>
+        </div>
+
+        <button id="novaCalcBtn" class="btn-nova">Fazer Nova Cálculo</button>
+    </div>
+</div>
             <!-- Vendas -->
             <div id="vendas" class="tab hidden">
                 <h1>💰 Histórico de Vendas</h1>
