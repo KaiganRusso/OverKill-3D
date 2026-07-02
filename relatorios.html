@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerFlow • Relatórios</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <nav class="sidebar">
+            <div class="logo">
+                <span>🖨️</span>
+                <h1>MakerFlow</h1>
+            </div>
+            <div class="menu">
+                <a href="index.html" class="menu-item">🏠 Dashboard</a>
+                <a href="calculadora.html" class="menu-item">🧮 Calculadora</a>
+                <a href="vendas.html" class="menu-item">💰 Vendas</a>
+                <a href="produtos.html" class="menu-item">📦 Produtos</a>
+                <a href="relatorios.html" class="menu-item active">📊 Relatórios</a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <h1>📊 Relatórios e Análises</h1>
+            <p class="subtitle">Visão analítica do seu negócio</p>
+
+            <div class="cards-grid">
+                <div class="card-info">
+                    <h3>Total de Impressões</h3>
+                    <h2 id="total-impressoes-rel">0</h2>
+                </div>
+                <div class="card-info">
+                    <h3>Custo Médio por Impressão</h3>
+                    <h2 id="custo-medio">R$ 0,00</h2>
+                </div>
+                <div class="card-info">
+                    <h3>Lucro Estimado</h3>
+                    <h2 id="lucro-estimado" class="positivo">R$ 0,00</h2>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h2>Resumo Geral</h2>
+                <div id="resumo-relatorio">
+                    <p>Carregando dados...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function gerarRelatorio() {
+            let historico = JSON.parse(localStorage.getItem('makerflow_historico')) || [];
+            
+            const totalImpressoes = historico.length;
+            let custoTotal = 0;
+
+            historico.forEach(item => {
+                if (item.custoTotal) custoTotal += parseFloat(item.custoTotal);
+            });
+
+            const custoMedio = totalImpressoes > 0 ? (custoTotal / totalImpressoes).toFixed(2) : 0;
+
+            document.getElementById('total-impressoes-rel').textContent = totalImpressoes;
+            document.getElementById('custo-medio').textContent = `R$ ${custoMedio}`;
+            document.getElementById('lucro-estimado').textContent = `R$ ${(custoTotal * 2).toFixed(2)}`; // Exemplo 2x
+
+            const resumo = document.getElementById('resumo-relatorio');
+            resumo.innerHTML = `
+                <p><strong>${totalImpressoes}</strong> impressões registradas</p>
+                <p>Custo total acumulado: <strong>R$ ${custoTotal.toFixed(2)}</strong></p>
+                <p>Recomendação: Use o multiplicador 3× para margem ideal de lucro.</p>
+            `;
+        }
+
+        // Gerar relatório ao carregar
+        gerarRelatorio();
+    </script>
+</body>
+</html>
