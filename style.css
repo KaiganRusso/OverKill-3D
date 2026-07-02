@@ -65,6 +65,7 @@ body {
     color: white;
 }
 
+/* Conteúdo */
 .content {
     flex: 1;
     padding: 2rem;
@@ -90,6 +91,7 @@ h1 {
     margin-bottom: 2rem;
 }
 
+/* Cards do Dashboard */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -118,17 +120,17 @@ h1 {
     color: #4ade80;
 }
 
-/* Estilos da Calculadora */
+/* Calculadora */
 .card {
     background: #1e2937;
     border-radius: 16px;
-    padding: 2rem;
+    padding: 2.2rem;
     border: 1px solid #334155;
-    max-width: 600px;
+    max-width: 620px;
 }
 
 .input-group {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
 }
 
 label {
@@ -140,12 +142,18 @@ label {
 
 input {
     width: 100%;
-    padding: 14px 18px;
+    padding: 15px 18px;
     background: #0f172a;
     border: 2px solid #475569;
-    border-radius: 10px;
+    border-radius: 12px;
     color: white;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    transition: border 0.2s;
+}
+
+input:focus {
+    border-color: #60a5fa;
+    outline: none;
 }
 
 .input-with-unit {
@@ -159,7 +167,6 @@ input {
     transform: translateY(-50%);
     color: #64748b;
     font-weight: 500;
-    pointer-events: none;
 }
 
 .btn-calcular {
@@ -168,17 +175,19 @@ input {
     background: linear-gradient(90deg, #3b82f6, #6366f1);
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 12px;
+    font-size: 1.15rem;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    transition: transform 0.2s;
 }
 
 .btn-calcular:hover {
-    opacity: 0.95;
+    transform: translateY(-2px);
 }
 
+/* Placeholder */
 .placeholder {
     background: #1e2937;
     border: 2px dashed #475569;
