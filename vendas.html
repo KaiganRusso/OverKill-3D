@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerFlow • Vendas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <nav class="sidebar">
+            <div class="logo">
+                <span>🖨️</span>
+                <h1>MakerFlow</h1>
+            </div>
+            <div class="menu">
+                <a href="index.html" class="menu-item">🏠 Dashboard</a>
+                <a href="calculadora.html" class="menu-item">🧮 Calculadora</a>
+                <a href="vendas.html" class="menu-item active">💰 Vendas</a>
+                <a href="produtos.html" class="menu-item">📦 Produtos</a>
+                <a href="relatorios.html" class="menu-item">📊 Relatórios</a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <h1>💰 Histórico de Vendas</h1>
+            <p class="subtitle">Registro completo de todas as vendas realizadas</p>
+
+            <div class="card">
+                <h2>Últimas Vendas</h2>
+                <div id="listaVendas" class="lista-vazia">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+
+            <button onclick="limparHistorico()" class="btn-secundario" style="margin-top: 1rem;">
+                Limpar Histórico
+            </button>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Lógica específica da página de vendas
+        const listaVendas = document.getElementById('listaVendas');
+
+        function carregarVendas() {
+            let historico = JSON.parse(localStorage.getItem('makerflow_historico')) || [];
+            
+            if (historico.length === 0) {
+                listaVendas.innerHTML = `<p style="color:#64748b; text-align:center; padding:2rem;">Nenhuma venda registrada ainda.</p>`;
+                return;
+            }
+
+            let html = '';
+            historico.forEach(item => {
+                html += `
+                    <div class="venda-item">
+                        <div>
+                            <strong>${item.nome}</strong><br>
+                            <small>${item.data}</small>
+                        </div>
+                        <div style="text-align:right;">
+                            <strong>R$ ${item.custoTotal || '0.00'}</strong>
+                        </div>
+                    </div>
+                `;
+            });
+            listaVendas.innerHTML = html;
+        }
+
+        function limparHistorico() {
+            if (confirm("Deseja limpar todo o histórico de vendas?")) {
+                localStorage.removeItem('makerflow_historico');
+                carregarVendas();
+            }
+        }
+
+        // Carregar ao abrir a página
+        carregarVendas();
+    </script>
+</body>
+</html>
