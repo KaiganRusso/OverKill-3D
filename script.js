@@ -1,7 +1,5 @@
-// Script compartilhado entre as páginas
-
+// Script compartilhado
 document.addEventListener('DOMContentLoaded', function() {
-    // Marcar página atual como ativa
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
     
     document.querySelectorAll('.menu-item').forEach(item => {
