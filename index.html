@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerFlow • Gestão Financeira</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <span>🖨️</span>
+                <h1>MakerFlow</h1>
+            </div>
+            
+            <div class="menu">
+                <a href="#" class="menu-item active" data-tab="dashboard">🏠 Dashboard</a>
+                <a href="#" class="menu-item" data-tab="calculadora">🧮 Calculadora</a>
+                <a href="#" class="menu-item" data-tab="vendas">💰 Vendas</a>
+                <a href="#" class="menu-item" data-tab="produtos">📦 Produtos</a>
+                <a href="#" class="menu-item" data-tab="relatorios">📊 Relatórios</a>
+            </div>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <main class="content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="tab active">
+                <h1>Bem-vindo ao MakerFlow</h1>
+                <p class="subtitle">Visão geral da sua operação</p>
+                <div class="cards-grid">
+                    <div class="card-info">
+                        <h3>Saldo Atual</h3>
+                        <h2 id="saldo-atual">R$ 0,00</h2>
+                    </div>
+                    <div class="card-info">
+                        <h3>Lucro do Mês</h3>
+                        <h2 id="lucro-mes" class="positivo">R$ 0,00</h2>
+                    </div>
+                    <div class="card-info">
+                        <h3>Impressões</h3>
+                        <h2 id="total-impressoes">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculadora -->
+            <div id="calculadora" class="tab hidden">
+                <h1>Calculadora de Custos</h1>
+                <p class="subtitle">Calcule e precifique suas impressões</p>
+                <!-- Vamos preencher na Etapa 2 -->
+                <div class="placeholder">Calculadora será implementada na próxima etapa</div>
+            </div>
+
+            <!-- Vendas -->
+            <div id="vendas" class="tab hidden">
+                <h1>Histórico de Vendas</h1>
+                <div class="placeholder">Histórico de vendas será implementado em breve</div>
+            </div>
+
+            <!-- Produtos -->
+            <div id="produtos" class="tab hidden">
+                <h1>Meus Produtos</h1>
+                <div class="placeholder">Cadastro de produtos será implementado em breve</div>
+            </div>
+
+            <!-- Relatórios -->
+            <div id="relatorios" class="tab hidden">
+                <h1>Relatórios e Análises</h1>
+                <div class="placeholder">Relatórios automáticos serão implementados em breve</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
