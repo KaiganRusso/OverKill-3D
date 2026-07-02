@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerFlow • Calculadora</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <nav class="sidebar">
+            <div class="logo">
+                <span>🖨️</span>
+                <h1>MakerFlow</h1>
+            </div>
+            <div class="menu">
+                <a href="index.html" class="menu-item">🏠 Dashboard</a>
+                <a href="calculadora.html" class="menu-item active">🧮 Calculadora</a>
+                <a href="vendas.html" class="menu-item">💰 Vendas</a>
+                <a href="produtos.html" class="menu-item">📦 Produtos</a>
+                <a href="relatorios.html" class="menu-item">📊 Relatórios</a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <h1>🧮 Calculadora de Custos</h1>
+            <p class="subtitle">Calcule o custo real e defina o preço de venda</p>
+            
+            <div class="card">
+                <form id="calcForm">
+                    <div class="input-group">
+                        <label for="nome">Nome da Impressão</label>
+                        <input type="text" id="nome" placeholder="Ex: Suporte de celular" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="filamento">Peso de filamento usado</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="filamento" value="250" step="0.1" required>
+                            <span class="unit">gramas</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="precoFilamento">Preço do filamento</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="precoFilamento" value="120" step="0.01" required>
+                            <span class="unit">R$/kg</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="horas">Tempo de impressão</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="horas" value="8" step="0.1" required>
+                            <span class="unit">horas</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="potencia">Potência da impressora</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="potencia" value="300" step="1" required>
+                            <span class="unit">Watts</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="precoEnergia">Preço da energia</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="precoEnergia" value="0.85" step="0.01" required>
+                            <span class="unit">R$/kWh</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-calcular">Calcular</button>
+                </form>
+            </div>
+
+            <!-- Resultado -->
+            <div id="resultadoCalc" class="resultado-card hidden">
+                <h2 id="nomeResultadoCalc"></h2>
+                
+                <div class="resultados">
+                    <div class="result-item">
+                        <span>Custo Total</span>
+                        <strong id="custoTotal">R$ 0,00</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Custo por Hora</span>
+                        <strong id="custoHora">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <h3>Sugestão de Preço de Venda</h3>
+                <div class="multiplicadores">
+                    <div class="multi-item">
+                        <span class="multi-titulo">2× <small>Lucro Mínimo</small></span>
+                        <span id="preco2" class="multi-valor">R$ 0,00</span>
+                    </div>
+                    <div class="multi-item destaque">
+                        <span class="multi-titulo">3× <small>Lucro Ideal</small></span>
+                        <span id="preco3" class="multi-valor">R$ 0,00</span>
+                    </div>
+                    <div class="multi-item">
+                        <span class="multi-titulo">4× <small>Lucro Alto</small></span>
+                        <span id="preco4" class="multi-valor">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button id="novaCalcBtn" class="btn-nova">Nova Cálculo</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Lógica específica da calculadora
+        const form = document.getElementById('calcForm');
+        const resultadoDiv = document.getElementById('resultadoCalc');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim() || "Impressão sem nome";
+            const peso = parseFloat(document.getElementById('filamento').value) || 0;
+            const precoFil = parseFloat(document.getElementById('precoFilamento').value) || 0;
+            const horas = parseFloat(document.getElementById('horas').value) || 0;
+            const potencia = parseFloat(document.getElementById('potencia').value) || 0;
+            const precoEnergia = parseFloat(document.getElementById('precoEnergia').value) || 0;
+
+            const custoFil = (peso / 1000) * precoFil;
+            const custoEn = (potencia / 1000) * horas * precoEnergia;
+            const custoTotal = custoFil + custoEn;
+            const custoHora = horas > 0 ? custoTotal / horas : 0;
+
+            // Mostrar resultado
+            document.getElementById('nomeResultadoCalc').textContent = nome;
+            document.getElementById('custoTotal').textContent = `R$ ${custoTotal.toFixed(2)}`;
+            document.getElementById('custoHora').textContent = `R$ ${custoHora.toFixed(2)}`;
+
+            document.getElementById('preco2').textContent = `R$ ${(custoTotal * 2).toFixed(2)}`;
+            document.getElementById('preco3').textContent = `R$ ${(custoTotal * 3).toFixed(2)}`;
+            document.getElementById('preco4').textContent = `R$ ${(custoTotal * 4).toFixed(2)}`;
+
+            form.parentElement.classList.add('hidden');
+            resultadoDiv.classList.remove('hidden');
+        });
+
+        document.getElementById('novaCalcBtn').addEventListener('click', function() {
+            form.reset();
+            form.parentElement.classList.remove('hidden');
+            resultadoDiv.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
